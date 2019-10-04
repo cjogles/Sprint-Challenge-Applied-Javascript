@@ -153,7 +153,6 @@ let card = document.querySelector(".cards-container");
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
 .then(function (response) {
     // handle success
-    console.log(response);
     let newCard = bootStrapCard(response);
     card.appendChild(newCard);
   })
@@ -165,7 +164,6 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
   axios.get("https://lambda-times-backend.herokuapp.com/articles")
 .then(function (response) {
     // handle success
-    console.log(response);
     let newCard = javascriptCard(response);
     card.appendChild(newCard);
   })
@@ -177,7 +175,6 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
   axios.get("https://lambda-times-backend.herokuapp.com/articles")
 .then(function (response) {
     // handle success
-    console.log(response);
     let newCard = jQueryCard(response);
     card.appendChild(newCard);
   })
@@ -189,7 +186,6 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
   axios.get("https://lambda-times-backend.herokuapp.com/articles")
 .then(function (response) {
     // handle success
-    console.log(response);
     let newCard = nodeCard(response);
     card.appendChild(newCard);
   })
@@ -201,8 +197,8 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
   axios.get("https://lambda-times-backend.herokuapp.com/articles")
   .then(function (response) {
       // handle success
-      console.log(response);
       let newCard = technologyCard(response);
+      console.log(response);
       card.appendChild(newCard);
     })
     .catch(function (error) {

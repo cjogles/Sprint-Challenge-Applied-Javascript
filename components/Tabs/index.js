@@ -10,27 +10,21 @@
 
 // create Tabs component by iterating over data and filling component with content
 // use function factory to create component
-function Tab(herokuObject) {
-    // num of tabs to create
-    let numTabs = herokuObject.data.topics.length;
-    console.log("im the num of tabs", numTabs);
+let topicsElement = document.querySelector(".topics");
+
+function Tab(item) {
     // create elements
-    for (let i = 0; i < numTabs; i++) {
-        console.log("im the iteration num", i);
-        let newTab = document.createElement("div");
-        // add class for style
-        newTab.classList.add("tab");
-        // give new tab content
-        newTab.textContent = herokuObject.data.topics[i];
-        console.log("Im the newtab after putting topics[i] in", newTab);
-        return newTab;
-    }
-    return herokuObject.data.topics;
+    let newTab = document.createElement("div");
+    // add class for style
+    newTab.classList.add("tab");
+    // populate content
+    newTab.textContent = item;
+    // return newtabs
+    topicsElement.appendChild(newTab);
 }
 
-// add new tab to DOM underneath the .topics element
 
-let topicsElement = document.querySelector(".topics");
+
 
 // Perform a get request using axios object in the axios library to receive topics data
 axios.get("https://lambda-times-backend.herokuapp.com/topics")
@@ -39,13 +33,12 @@ axios.get("https://lambda-times-backend.herokuapp.com/topics")
     // add the .then method and .catch methods to decide what to do after a 
     // reject method is returned or a resolve method is returned. 
     .then(function(response) {
-        // handle response 
-        // create a tab via the Tab function factory holding response (aka the topics array) as its arg
+        // handle response create a tab via the Tab function factory holding response (aka the topics array) as its arg
         // append newly created tab array to topicsElement created above the get request
-        console.log("Im the response: ", response);
-        let tab = Tab(response);
-        console.log("Im the Tab factory function result of response passed into it: ", tab);
-        topicsElement.appendChild(tab);
+        console.log(response);
+        response.data.topics.forEach(item => {
+            Tab(item);
+        })
     })
     .catch(function (error) {
         // handle error
