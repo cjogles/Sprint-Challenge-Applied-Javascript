@@ -24,6 +24,10 @@ function Header() {
     newDate.classList.add("date");
     newTemp.classList.add("temp");
     // Add potential event listeners?
+    // add content
+    newTitle.textContent = "Lambda Times";
+    newDate.textContent = "Oct 4th, 2019";
+    newTemp.textContent = "98 deg";
     // Return newHeader Component
     return newHeader;
 }

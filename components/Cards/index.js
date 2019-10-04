@@ -17,7 +17,8 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
-function Card(obj) {
+
+function bootStrapCard(obj) {
     let newCard = document.createElement("div");
     let headLine = document.createElement("div");
     let author = document.createElement("div");
@@ -42,16 +43,169 @@ function Card(obj) {
     //return card
     return newCard;
 }
+
+function javascriptCard(obj) {
+    let newCard = document.createElement("div");
+    let headLine = document.createElement("div");
+    let author = document.createElement("div");
+    let imgContainer = document.createElement("div");
+    let pic = document.createElement("img");
+    let byAuthorName = document.createElement("span");
+    // structure content elements
+    newCard.appendChild(headLine);
+    newCard.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(pic);
+    author.appendChild(byAuthorName);
+    // connect classes for styling
+    newCard.classList.add("card");
+    headLine.classList.add("headline");
+    author.classList.add("author");
+    imgContainer.classList.add("img-container");
+    // populate elements with content
+    pic.src = obj.data.articles.javascript[0].authorPhoto;
+    headLine.textContent = obj.data.articles.javascript[0].headline;
+    byAuthorName.textContent = obj.data.articles.javascript[0].authorName;
+    //return card
+    return newCard;
+}
+
+function jQueryCard(obj) {
+    let newCard = document.createElement("div");
+    let headLine = document.createElement("div");
+    let author = document.createElement("div");
+    let imgContainer = document.createElement("div");
+    let pic = document.createElement("img");
+    let byAuthorName = document.createElement("span");
+    // structure content elements
+    newCard.appendChild(headLine);
+    newCard.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(pic);
+    author.appendChild(byAuthorName);
+    // connect classes for styling
+    newCard.classList.add("card");
+    headLine.classList.add("headline");
+    author.classList.add("author");
+    imgContainer.classList.add("img-container");
+    // populate elements with content
+    pic.src = obj.data.articles.jquery[0].authorPhoto;
+    headLine.textContent = obj.data.articles.jquery[0].headline;
+    byAuthorName.textContent = obj.data.articles.jquery[0].authorName;
+    //return card
+    return newCard;
+}
+
+function nodeCard(obj) {
+    let newCard = document.createElement("div");
+    let headLine = document.createElement("div");
+    let author = document.createElement("div");
+    let imgContainer = document.createElement("div");
+    let pic = document.createElement("img");
+    let byAuthorName = document.createElement("span");
+    // structure content elements
+    newCard.appendChild(headLine);
+    newCard.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(pic);
+    author.appendChild(byAuthorName);
+    // connect classes for styling
+    newCard.classList.add("card");
+    headLine.classList.add("headline");
+    author.classList.add("author");
+    imgContainer.classList.add("img-container");
+    // populate elements with content
+    pic.src = obj.data.articles.node[0].authorPhoto;
+    headLine.textContent = obj.data.articles.node[0].headline;
+    byAuthorName.textContent = obj.data.articles.node[0].authorName;
+    //return card
+    return newCard;
+}
+
+function technologyCard(obj) {
+    let newCard = document.createElement("div");
+    let headLine = document.createElement("div");
+    let author = document.createElement("div");
+    let imgContainer = document.createElement("div");
+    let pic = document.createElement("img");
+    let byAuthorName = document.createElement("span");
+    // structure content elements
+    newCard.appendChild(headLine);
+    newCard.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(pic);
+    author.appendChild(byAuthorName);
+    // connect classes for styling
+    newCard.classList.add("card");
+    headLine.classList.add("headline");
+    author.classList.add("author");
+    imgContainer.classList.add("img-container");
+    // populate elements with content
+    pic.src = obj.data.articles.technology[0].authorPhoto;
+    headLine.textContent = obj.data.articles.technology[0].headline;
+    byAuthorName.textContent = obj.data.articles.technology[0].authorName;
+    //return card
+    return newCard;
+}
+
 let card = document.querySelector(".cards-container");
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
 .then(function (response) {
     // handle success
     console.log(response);
-    let newCard = Card(response);
+    let newCard = bootStrapCard(response);
     card.appendChild(newCard);
   })
   .catch(function (error) {
     // handle error
     console.log(error);
   });
+
+  axios.get("https://lambda-times-backend.herokuapp.com/articles")
+.then(function (response) {
+    // handle success
+    console.log(response);
+    let newCard = javascriptCard(response);
+    card.appendChild(newCard);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
+
+  axios.get("https://lambda-times-backend.herokuapp.com/articles")
+.then(function (response) {
+    // handle success
+    console.log(response);
+    let newCard = jQueryCard(response);
+    card.appendChild(newCard);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
+
+  axios.get("https://lambda-times-backend.herokuapp.com/articles")
+.then(function (response) {
+    // handle success
+    console.log(response);
+    let newCard = nodeCard(response);
+    card.appendChild(newCard);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
+
+  axios.get("https://lambda-times-backend.herokuapp.com/articles")
+  .then(function (response) {
+      // handle success
+      console.log(response);
+      let newCard = technologyCard(response);
+      card.appendChild(newCard);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
