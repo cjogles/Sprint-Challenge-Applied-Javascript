@@ -8,34 +8,26 @@
 //  The tab component should look like this:
 //    <div class="tab">topic here</div>
 
-// create Tabs component by iterating over data and filling component with content
-// use function factory to create component
+// make a variable housing the location of the container where I should append the new tabs too
 let topicsElement = document.querySelector(".topics");
 
+// make a tab creator aka tab component (item is the literal string that you want to house inside tab)
 function Tab(item) {
-    // create elements
+    // create element
     let newTab = document.createElement("div");
     // add class for style
     newTab.classList.add("tab");
     // populate content
     newTab.textContent = item;
-    // return newtabs
+    // append the new tab to the DOM for implementation into the html document. No need to return value the appending is all thats needed
     topicsElement.appendChild(newTab);
 }
 
-
-
-
 // Perform a get request using axios object in the axios library to receive topics data
 axios.get("https://lambda-times-backend.herokuapp.com/topics")
-    // the axios object and .get method have already created a Promise object 
-    // under the hood with the callback functions of resolve and reject.
-    // add the .then method and .catch methods to decide what to do after a 
-    // reject method is returned or a resolve method is returned. 
+    // .then(topicsData)
     .then(function(response) {
-        // handle response create a tab via the Tab function factory holding response (aka the topics array) as its arg
-        // append newly created tab array to topicsElement created above the get request
-        console.log(response);
+        // target array of topics and for each item in topics array invoke the tab component and pass it each respective item
         response.data.topics.forEach(item => {
             Tab(item);
         })
