@@ -18,7 +18,11 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-function bootStrapCard(obj) {
+// create a card container to append new card elements too
+let cardContainer = document.querySelector(".cards-container");
+
+// create a bootstrap card component
+function BootStrapCard(obj) {
     let newCard = document.createElement("div");
     let headLine = document.createElement("div");
     let author = document.createElement("div");
@@ -37,14 +41,15 @@ function bootStrapCard(obj) {
     author.classList.add("author");
     imgContainer.classList.add("img-container");
     // populate elements with content
-    pic.src = obj.data.articles.bootstrap[0].authorPhoto;
-    headLine.textContent = obj.data.articles.bootstrap[0].headline;
-    byAuthorName.textContent = obj.data.articles.bootstrap[0].authorName;
-    //return card
-    return newCard;
+    headLine.textContent = obj.headline;
+    byAuthorName.textContent = obj.authorName;
+    pic.src = obj.authorPhoto;
+    // append newCard to the container desired
+    cardContainer.appendChild(newCard);
 }
 
-function javascriptCard(obj) {
+// create a javascript card component
+function JavascriptCard(obj) {
     let newCard = document.createElement("div");
     let headLine = document.createElement("div");
     let author = document.createElement("div");
@@ -63,14 +68,15 @@ function javascriptCard(obj) {
     author.classList.add("author");
     imgContainer.classList.add("img-container");
     // populate elements with content
-    pic.src = obj.data.articles.javascript[0].authorPhoto;
-    headLine.textContent = obj.data.articles.javascript[0].headline;
-    byAuthorName.textContent = obj.data.articles.javascript[0].authorName;
-    //return card
-    return newCard;
+    headLine.textContent = obj.headline;
+    byAuthorName.textContent = obj.authorName;
+    pic.src = obj.authorPhoto;
+    // append newCard to the container desired
+    cardContainer.appendChild(newCard);
 }
 
-function jQueryCard(obj) {
+// create a jquery card component
+function JQueryCard(obj) {
     let newCard = document.createElement("div");
     let headLine = document.createElement("div");
     let author = document.createElement("div");
@@ -89,14 +95,15 @@ function jQueryCard(obj) {
     author.classList.add("author");
     imgContainer.classList.add("img-container");
     // populate elements with content
-    pic.src = obj.data.articles.jquery[0].authorPhoto;
-    headLine.textContent = obj.data.articles.jquery[0].headline;
-    byAuthorName.textContent = obj.data.articles.jquery[0].authorName;
-    //return card
-    return newCard;
+    headLine.textContent = obj.headline;
+    byAuthorName.textContent = obj.authorName;
+    pic.src = obj.authorPhoto;
+    // append newCard to the container desired
+    cardContainer.appendChild(newCard);
 }
 
-function nodeCard(obj) {
+// create a node card component
+function NodeCard(obj) {
     let newCard = document.createElement("div");
     let headLine = document.createElement("div");
     let author = document.createElement("div");
@@ -115,14 +122,15 @@ function nodeCard(obj) {
     author.classList.add("author");
     imgContainer.classList.add("img-container");
     // populate elements with content
-    pic.src = obj.data.articles.node[0].authorPhoto;
-    headLine.textContent = obj.data.articles.node[0].headline;
-    byAuthorName.textContent = obj.data.articles.node[0].authorName;
-    //return card
-    return newCard;
+    headLine.textContent = obj.headline;
+    byAuthorName.textContent = obj.authorName;
+    pic.src = obj.authorPhoto;
+    // append newCard to the container desired
+    cardContainer.appendChild(newCard);
 }
 
-function technologyCard(obj) {
+// create a technology card component
+function TechnologyCard(obj) {
     let newCard = document.createElement("div");
     let headLine = document.createElement("div");
     let author = document.createElement("div");
@@ -141,67 +149,34 @@ function technologyCard(obj) {
     author.classList.add("author");
     imgContainer.classList.add("img-container");
     // populate elements with content
-    pic.src = obj.data.articles.technology[0].authorPhoto;
-    headLine.textContent = obj.data.articles.technology[0].headline;
-    byAuthorName.textContent = obj.data.articles.technology[0].authorName;
-    //return card
-    return newCard;
+    headLine.textContent = obj.headline;
+    byAuthorName.textContent = obj.authorName;
+    pic.src = obj.authorPhoto;
+    // append newCard to the container desired
+    cardContainer.appendChild(newCard);
 }
-
-let card = document.querySelector(".cards-container");
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
 .then(function (response) {
-    // handle success
-    let newCard = bootStrapCard(response);
-    card.appendChild(newCard);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
-
-  axios.get("https://lambda-times-backend.herokuapp.com/articles")
-.then(function (response) {
-    // handle success
-    let newCard = javascriptCard(response);
-    card.appendChild(newCard);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
-
-  axios.get("https://lambda-times-backend.herokuapp.com/articles")
-.then(function (response) {
-    // handle success
-    let newCard = jQueryCard(response);
-    card.appendChild(newCard);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
-
-  axios.get("https://lambda-times-backend.herokuapp.com/articles")
-.then(function (response) {
-    // handle success
-    let newCard = nodeCard(response);
-    card.appendChild(newCard);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  });
-
-  axios.get("https://lambda-times-backend.herokuapp.com/articles")
-  .then(function (response) {
-      // handle success
-      let newCard = technologyCard(response);
-      console.log(response);
-      card.appendChild(newCard);
+    // Enter data and invoke component on every item within each array within all objects
+    console.log(response);
+    response.data.articles.bootstrap.forEach(currObj => {
+            BootStrapCard(currObj);
     })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
+    response.data.articles.javascript.forEach(currObj => {
+            JavascriptCard(currObj);
+    })
+    response.data.articles.jquery.forEach(currObj => {
+            JQueryCard(currObj);
+    })
+    response.data.articles.node.forEach(currObj => {
+            NodeCard(currObj);
+    })
+    response.data.articles.technology.forEach(currObj => {
+            TechnologyCard(currObj);
+    })
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  });
